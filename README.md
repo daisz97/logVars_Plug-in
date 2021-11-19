@@ -11,3 +11,19 @@ When using this plug-in, your localhost need to be configured with the following
 * SSHPASS
     + CentOS:  sudo yum install sshpass
     + Ubuntu:  sudo apt-get install sshpass
+
+## Release Notes
+
+0.0.1
+Initial release of LoggingVars
+
+0.0.2
+* Add keybindings;
+* Add right click shortcut;
+* Add icon;
+* Modify README.md;
+* Change the model of the call.
+
+
+
+## Enjoy!

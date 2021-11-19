@@ -7,10 +7,14 @@
 	"engines": {
 		"vscode": "^1.61.0"
 	},
-	"repository": {},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/daisz97/logVars_Plug-in.git"
+	},
 	"categories": [
 		"Other"
 	],
+	"icon": "images/icon.png",
 	"activationEvents": [
 		"onCommand:loggingvars.logvars"
 	],
