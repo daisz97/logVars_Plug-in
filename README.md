@@ -33,4 +33,7 @@ Initial release of LoggingVars
 #### 0.0.5
 * Change the representation tyle of recommended variables -- from being represented in "informationMessage" to being represented in the output panel.
 
+#### 0.0.6
+* Change the representation tyle of recommended variables -- from being represented in "informationMessage" to being represented in the output panel and the output panel.
+
 ## Enjoy!
