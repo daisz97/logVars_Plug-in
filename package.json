@@ -2,7 +2,7 @@
 	"name": "loggingvars",
 	"displayName": "LoggingVars",
 	"description": "To recommend logging variables while developing Java projects",
-	"version": "0.0.2",
+	"version": "0.0.6",
 	"publisher": "Daishaozhi",
 	"engines": {
 		"vscode": "^1.61.0"

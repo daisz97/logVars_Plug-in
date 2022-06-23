@@ -50,47 +50,46 @@ function activate(context) {
 
 		// var output = shell.exec('cat sample.txt', {silent: true}).stdout;
 		// vscode.window.showInformationMessage('output:'+output);
+		let channel = vscode.window.createOutputChannel('LoggingVariables');
 
-		//BERT_infer
-		shell.exec('sshpass -p 123456 scp -P 59619 -o StrictHostKeyChecking=no sample_text.txt root@47.105.54.217:/home/dsz/', function(code, stdout, stderr){
-			console.log('Exit code:', code);
-			console.log('Program output:', stdout);
-			console.log('Program Error:', stderr);
-		});
-		
-		shell.exec('sshpass -p \'Buaa1806!(\' ssh -o "StrictHostKeyChecking no" root@47.105.54.217 "docker exec 1529b87ec9dc curl -X POST http://127.0.0.1:8080/predictions/BERT_infer -T /home/dsz/sample_text.txt"', function(code, stdout, stderr){
-			console.log('Exit code:', code);
-			console.log('Program output:', stdout);
-			console.log('Program Error:', stderr);
-			vscode.window.showInformationMessage('Recommanded variables:\n'+stdout, 'OK!'); //  { modal: true}
-		});
-
-		//CodeBert_infer
 		shell.exec('sshpass -p 123456 scp -P 10020 -o StrictHostKeyChecking=no sample_text.txt root@47.105.54.217:/home/dsz/', function(code, stdout, stderr){
 			console.log('Exit code:', code);
 			console.log('Program output:', stdout);
 			console.log('Program Error:', stderr);
 		});
-		shell.exec('sshpass -p \'Buaa1806!(\' ssh -o "StrictHostKeyChecking no" root@47.105.54.217 "docker exec dc87cf0a223d curl -X POST http://127.0.0.1:8080/predictions/CodeBert_infer -T /home/dsz/sample_text.txt"', function(code, stdout, stderr){
+		
+		//BERT_infer
+		shell.exec('sshpass -p \'Buaa1806!(\' ssh -o "StrictHostKeyChecking no" root@47.105.54.217 "docker exec 7453cdc2f4d9 curl -X POST http://127.0.0.1:8080/predictions/BERT_infer -T /home/dsz/sample_text.txt"', function(code, stdout, stderr){
 			console.log('Exit code:', code);
 			console.log('Program output:', stdout);
 			console.log('Program Error:', stderr);
-			vscode.window.showInformationMessage('Recommanded variables by a better model:\n'+stdout, 'OK!'); //  { modal: true}
+			channel.appendLine("Recommanded varaibles:")
+			channel.appendLine(stdout);
+			channel.appendLine(' ');
+			vscode.window.showInformationMessage('Recommanded variables:\n'+stdout, 'OK!'); //  { modal: true}
 		});
 
-		// // RNNAttn_infer
-		// shell.exec('sshpass -p 123456 scp -P 10021 -o StrictHostKeyChecking=no sample_text.txt root@47.105.54.217:/home/dsz/', function(code, stdout, stderr){
-		// 	console.log('Exit code:', code);
-		// 	console.log('Program output:', stdout);
-		// 	console.log('Program Error:', stderr);
-		// });
-		// shell.exec('sshpass -p \'Buaa1806!(\' ssh -o "StrictHostKeyChecking no" root@47.105.54.217 "docker exec 5db6a49bb36c curl -X POST http://127.0.0.1:8080/predictions/RNNAttn_infer -T /home/dsz/sample_text.txt"', function(code, stdout, stderr){
-		// 	console.log('Exit code:', code);
-		// 	console.log('Program output:', stdout);
-		// 	console.log('Program Error:', stderr);
-		// 	vscode.window.showInformationMessage('Weakly recommanded variables:\n'+stdout, 'OK!'); //  { modal: true}
-		// });
+		//CodeBert_infer
+		shell.exec('sshpass -p \'Buaa1806!(\' ssh -o "StrictHostKeyChecking no" root@47.105.54.217 "docker exec 7453cdc2f4d9 curl -X POST http://127.0.0.1:8080/predictions/CodeBert_infer -T /home/dsz/sample_text.txt"', function(code, stdout, stderr){
+			console.log('Exit code:', code);
+			console.log('Program output:', stdout);
+			console.log('Program Error:', stderr);
+			channel.appendLine("Recommanded varaibles by a better model:")
+			channel.appendLine(stdout);
+			channel.appendLine(' ');
+			vscode.window.showInformationMessage('Recommanded variables by a better model:\n'+stdout, 'OK!'); //  { modal: true}
+		});
+		
 
+		//RNNAttn_infer
+		shell.exec('sshpass -p \'Buaa1806!(\' ssh -o "StrictHostKeyChecking no" root@47.105.54.217 "docker exec 7453cdc2f4d9 curl -X POST http://127.0.0.1:8080/predictions/RNNAttn_infer -T /home/dsz/sample_text.txt"', function(code, stdout, stderr){
+			console.log('Exit code:', code);
+			console.log('Program output:', stdout);
+			console.log('Program Error:', stderr);
+			channel.appendLine("Recommanded varaibles by a weaker model:")
+			channel.appendLine(stdout);
+			vscode.window.showInformationMessage('Recommanded variables by a weaker model:\n'+stdout, 'OK!'); //  { modal: true}
+		});
 
 	});
 
